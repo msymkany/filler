@@ -29,7 +29,6 @@ int		main(void)
 	ft_strdel(&line);
 	while (get_next_line(0, &line))
 	{
-		ft_printf("%s\n", line); // test
 		read_input(input, line);
 		ft_printf("%s\n", "finita"); // test
 //		place_token(input);
