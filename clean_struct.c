@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <zconf.h>
 #include "filler.h"
 
 void	clean_struct(t_input *in)
@@ -20,6 +19,8 @@ void	clean_struct(t_input *in)
 	i = 0;
 	in->token_x = 0;
 	in->token_y = 0;
+	in->res_x = 0;
+	in->res_y = 0;
 	while (in->token[i])
 	{
 		ft_strdel(&in->token[i++]);
@@ -29,7 +30,7 @@ void	clean_struct(t_input *in)
 	i = 0;
 	while (in->map[i])
 	{
-		free(in->map[i++]); // or strdel
+		ft_strdel(&in->map[i++]); // or strdel
 	}
 }
 
@@ -45,6 +46,10 @@ t_input		*initialize_struct(void)
 	in->token_x = 0;
 	in->token_y = 0;
 	in->token = NULL;
+	in->rival_x = -2147483648;
+	in->rival_y = -2147483648;
+	in->res_x = 0;
+	in->res_y = 0;
 	return (in);
 }
 

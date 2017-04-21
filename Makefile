@@ -21,6 +21,8 @@ INCLUDES = -I $(FIL_I)
 SOURCE = filler.c \
             clean_struct.c \
             read_input.c \
+            place_token.c \
+            put_token.c \
 
 OBJECTS = $(SOURCE:.c=.o)
 
