@@ -32,6 +32,7 @@ void	clean_struct(t_input *in)
 	{
 		ft_strdel(&in->map[i++]); // or strdel
 	}
+	in->dist_sum = 2147483647;
 }
 
 t_input		*initialize_struct(void)
@@ -46,10 +47,13 @@ t_input		*initialize_struct(void)
 	in->token_x = 0;
 	in->token_y = 0;
 	in->token = NULL;
-	in->rival_x = -2147483648;
-	in->rival_y = -2147483648;
+	in->rival_x = 0; //in->rival_x = -2147483648; // ver.1
+	in->rival_y = 0; //in->rival_y = -2147483648; // ver.1
 	in->res_x = 0;
 	in->res_y = 0;
+	in->dist_sum = 2147483647;
+//	in->in = 0; //test side ver.1
+	in->dist_map = NULL;
 	return (in);
 }
 

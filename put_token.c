@@ -34,7 +34,7 @@ int 	check_placement(int	x, int y, t_input *in)
 			j++;
 		}
 		i++;
-		if (!in->map[++x] || step > 1) //(!map[x + i])
+		if (!in->map[++x] || step > 1)
 			return (0);
 	}
 	if (!step)
@@ -66,46 +66,116 @@ int 	find_free_place(t_input *in)
 	return (0);
 }
 
-//int		get_rival(t_input *in)
-//{
-//	return ();
-//}
+int 	find_free_place_plus(t_input *in)
+{
+	int		i;
+	int 	j;
 
-//int 	put_towards(t_input *in)
-//{
-//	int		i;
-//	int 	j;
-//	int		m;
-//	int 	n;
-//
-//	i = ;
-//	while (in->map[i])
-//	{
-//		j = 0;
-//		while (in->map[i][j])
-//		{
-//
-//			j++;
-//		}
-//		i++;
-//	}
-//
-//	return (1);
-//}
+	i = 0;
+	while (i < in->my_x)
+	{
+		j = 0;
+		while (j < in->my_y)
+		{
+			if (check_placement(i, j, in))
+			{
+				in->res_x = i;
+				in->res_y = j;
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+
+int 	find_free_place_side(t_input *in)
+{
+	int		i;
+	int 	j;
+
+	i = ((in->my_x - in->token_x < 0) ? 0 : in->my_x - in->token_x);
+	while (i < in->my_x)
+	{
+		j = 0;
+		while (j < in->my_y)
+		{
+			if (check_placement(i, j, in))
+			{
+				in->res_x = i;
+				in->res_y = j;
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 void	put_token(t_input *in)
 {
-//	if (put_towards(in))
-//	{
-//		ft_printf("%d %d\n", in->res_x, in->res_y);
-//	}
-//	else if (get_rival(in))
-//	{
-//		ft_printf("%d %d\n", in->res_x, in->res_y);
-//	}
-//	else
-//	ft_printf("%d %d\n", in->res_x, in->res_y);
-	find_free_place(in);
-	ft_printf("%d %d\n", in->res_x, in->res_y);
+	if (find_free_place_side(in) && !in->in)
+	{
+		in->in = 1;
+		ft_printf("%d %d\n", in->res_x, in->res_y);
+	}
+	else if (find_free_place_plus(in))
+	{
+		ft_printf("%d %d\n", in->res_x, in->res_y);
+		in->in = 0;
+	}
+	else
+	{
+		find_free_place(in);
+		ft_printf("%d %d\n", in->res_x, in->res_y);
+		in->in = 0;
+	}
 	return ;
 }
+
+
+$$$ exec p1
+Plateau 15 17:
+	01234567890123456
+000 .................
+001 .................
+002 .................
+003 .................
+004 .................
+005 .................
+006 .................
+007 .................
+008 ..O..............
+009 .................
+010 .................
+011 .................
+012 ..............X..
+013 .................
+014 .................
+Piece 2 3:
+***
+...
+
+Plateau 15 17:
+	01234567890123456
+000 .................
+001 .................
+002 .................
+003 .................
+004 .................
+005 .................
+006 .................
+007 .................
+008 ..OOO............
+009 .................
+010 .................
+011 ..............X..
+012 ..............X..
+013 .................
+014 .................
+Piece 2 1:
+*
+*

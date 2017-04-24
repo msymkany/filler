@@ -31,7 +31,8 @@ int		main(void)
 	{
 		read_input(input, line);
 //		ft_printf("%s\n", "finita"); // test
-		place_token(input);
+//		place_token(input);
+		place_on_map(input);
 		clean_struct(input);
 	}
 //	delete_struct(&input);

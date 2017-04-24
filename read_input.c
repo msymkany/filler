@@ -24,17 +24,6 @@ size_t		get_num(int *res, char *line, size_t i)
 	return (i);
 }
 
-//void	print_arr(char **map, int row)
-//{
-//	int 	i;
-//
-//	i = 0;
-//	while (i < row)
-//	{
-//		ft_printf("%s\n", map[i++]);
-//	}
-//}
-
 void 	get_map(t_input *in)
 {
 	char 	*line;
@@ -55,7 +44,7 @@ void 	get_map(t_input *in)
 		in->map[i++] = ft_strsub(line, 4, (size_t)in->map_y);
 		ft_strdel(&line);
 	}
-//	print_arr(in->map, in->map_x); // test
+	print_arr(in->map, in->map_x); // test
 }
 
 void 	get_token(t_input *in)
@@ -82,6 +71,23 @@ void 	get_token(t_input *in)
 //	print_arr(in->token, in->token_x); // test
 }
 
+void	init_distance_map(t_input *input)
+{
+	size_t 	i;
+	size_t 	j;
+
+	i = 0;
+	j = 0;
+	input->dist_map = (int **)malloc(sizeof(int*) * input->map_x);
+	while (i < input->map_x)
+	{
+		input->dist_map[i++] = (int *)malloc(sizeof(int) * input->map_y);
+	}
+	get_rival(input);
+	first_calculate_distance(input);
+//	print_int_arr(input->dist_map, input->map_x, input->map_y); // test
+}
+
 void	read_input(t_input *input, char *line)
 {
 	size_t 	i;
@@ -92,8 +98,10 @@ void	read_input(t_input *input, char *line)
 		i = get_num(&input->map_x, line, 8);
 		get_num(&input->map_y, line, i);
 	}
-	ft_strdel(&line);
+//	ft_strdel(&line);
 //	ft_printf("%d %d\n", input->map_x, input->map_y); // test
 	get_map(input);
 	get_token(input);
+	if (!input->dist_map)
+		init_distance_map(input);
 }
