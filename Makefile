@@ -21,9 +21,8 @@ INCLUDES = -I $(FIL_I)
 SOURCE = filler.c \
             clean_struct.c \
             read_input.c \
-           # place_token.c \
-           # put_token.c \
             place_on_map.c \
+            manage_distance_map.c \
 
 OBJECTS = $(SOURCE:.c=.o)
 
@@ -45,7 +44,7 @@ $(LIBFT_DIR)libft.a:
 
 clean:
 	make clean -C $(LIBFT_DIR)
-	rm -f $(OBJ)
+	rm -f $(OBJECTS)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)

@@ -30,11 +30,14 @@ int		main(void)
 	while (get_next_line(0, &line))
 	{
 		read_input(input, line);
+		ft_strdel(&line);
 //		ft_printf("%s\n", "finita"); // test
 //		place_token(input);
 		place_on_map(input);
 		clean_struct(input);
 	}
-//	delete_struct(&input);
+	delete_struct(&input);
+//	while (1)
+//		;
 	return (0);
 }

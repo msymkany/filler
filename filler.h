@@ -48,15 +48,19 @@ void 			get_token(t_input *in);
 void 			get_map(t_input *in);
 size_t			get_num(int *res, char *line, size_t i);
 
-
 //void			put_token(t_input *in);
 //void			place_token(t_input *in);
 
 int				module(int i);
+void			init_array(t_input *in);
 void			get_rival(t_input *in);
-void			first_calculate_distance(t_input *in);
+//void			first_calculate_distance(t_input *in);
 void			calculate_distance(t_input *in);
+
 void			place_on_map(t_input *in);
+void			write_distance(t_input *in);
+int				find_best_place(t_input *in);
+int				check_placement(int	x, int y, t_input *in);
 
 //test
 void			print_arr(char **map, int row);

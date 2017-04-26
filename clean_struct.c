@@ -62,19 +62,24 @@ void	delete_struct(t_input **in)
 	int 	i;
 
 	i = 0;
-	while ((*in)->token[i])
-	{
-		free((*in)->token[i++]);
-	}
-	free((*in)->token);
-	(*in)->token = NULL;
+//	while ((*in)->token[i])
+//	{
+//		free((*in)->token[i++]);
+//	}
+//	free((*in)->token);
+//	(*in)->token = NULL;
+//	i = 0;
+//	while ((*in)->map[i])
+//	{
+//		free((*in)->map[i++]);
+//	}
+//	free((*in)->map);
+//	(*in)->map = NULL;
 	i = 0;
-	while ((*in)->map[i])
+	while (i < (*in)->map_x)
 	{
-		free((*in)->map[i++]);
+		free((*in)->dist_map[i++]);
 	}
-	free((*in)->map);
-	(*in)->map = NULL;
 	free(*in);
 	*in = NULL;
 }

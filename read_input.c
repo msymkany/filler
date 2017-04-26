@@ -44,7 +44,7 @@ void 	get_map(t_input *in)
 		in->map[i++] = ft_strsub(line, 4, (size_t)in->map_y);
 		ft_strdel(&line);
 	}
-	print_arr(in->map, in->map_x); // test
+//	print_arr(in->map, in->map_x); // test
 }
 
 void 	get_token(t_input *in)
@@ -84,7 +84,8 @@ void	init_distance_map(t_input *input)
 		input->dist_map[i++] = (int *)malloc(sizeof(int) * input->map_y);
 	}
 	get_rival(input);
-	first_calculate_distance(input);
+	init_array(input);
+//	first_calculate_distance(input);
 //	print_int_arr(input->dist_map, input->map_x, input->map_y); // test
 }
 
