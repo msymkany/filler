@@ -15,7 +15,7 @@
 void	write_distance(t_input *in)
 {
 	int		i;
-	int 	j;
+	int		j;
 
 	i = 0;
 	while (in->map[i])
@@ -26,7 +26,6 @@ void	write_distance(t_input *in)
 			if (in->map[i][j] == R(in->sign) && in->dist_map[i][j] >= 0)
 			{
 				in->dist_map[i][j] = -1;
-//				ft_printf("%d %d\n", i, j); // test
 				in->rival_x = i;
 				in->rival_y = j;
 				calculate_distance(in);
@@ -39,53 +38,40 @@ void	write_distance(t_input *in)
 	}
 }
 
-int 	check_row(int x, int y, t_input *in)
-{
-
-}
-
-int 	check_placement(int	x, int y, t_input *in)
+int		check_placement(int x, int y, t_input *in)
 {
 	int		i;
-	int 	j;
-	int 	step;
-	int 	d_sum;
+	int		j;
+	int		step;
+	int		d_sum;
 
-	i = 0;
+	i = -1;
 	step = 0;
 	d_sum = 0;
-	while (in->token[i])
+	while (in->token[++i])
 	{
 		if (i && !in->map[++x])
 			return (0);
-		j = 0;
-		while (in->token[i][j])
+		j = -1;
+		while (in->token[i][++j])
 		{
-			if (!in->map[x][y + j])
+			if (!in->map[x][y + j] ||
+				(in->token[i][j] == '*' && in->map[x][y + j] == R(in->sign)))
 				return (0);
-			else if (in->token[i][j] == '*')
-			{
-				if (in->map[x][y + j] == in->sign)
-					step++;
-				else if (in->map[x][y + j] == R(in->sign))
-					return (0);
-				else if (in->map[x][y + j] == '.')
-					d_sum = d_sum + in->dist_map[x][y + j];
-			}
-			j++;
+			else if (in->token[i][j] == '*' && in->map[x][y + j] == in->sign)
+				step++;
+			else if (in->map[x][y + j] == '.')
+				d_sum = d_sum + in->dist_map[x][y + j];
 		}
-		i++;
 	}
-	if (!step || step > 1)
-		return (0);
-	return (d_sum);
+	return ((step != 1) ? 0 : d_sum);
 }
 
-int 	find_best_place(t_input *in)
+int		find_best_place(t_input *in)
 {
 	int		i;
-	int 	j;
-	int 	dist;
+	int		j;
+	int		dist;
 
 	i = 0;
 	while (in->map[i])
@@ -96,10 +82,8 @@ int 	find_best_place(t_input *in)
 			dist = check_placement(i, j, in);
 			if (dist && dist < in->dist_sum)
 			{
-//				ft_printf("%d\n", dist); // test
 				in->res_x = i;
 				in->res_y = j;
-//				ft_printf("%d %d\n", in->res_x, in->res_y); // test
 				in->dist_sum = dist;
 			}
 			j++;
@@ -112,7 +96,6 @@ int 	find_best_place(t_input *in)
 void	place_on_map(t_input *in)
 {
 	write_distance(in);
-//	print_int_arr(in->dist_map, in->map_x, in->map_y); // test
 	find_best_place(in);
 	ft_printf("%d %d\n", in->res_x, in->res_y);
 }

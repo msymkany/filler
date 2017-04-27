@@ -24,9 +24,9 @@ size_t		get_num(int *res, char *line, size_t i)
 	return (i);
 }
 
-void 	get_map(t_input *in)
+void		get_map(t_input *in)
 {
-	char 	*line;
+	char	*line;
 	size_t	i;
 
 	i = 0;
@@ -36,7 +36,7 @@ void 	get_map(t_input *in)
 		in->map = (char **)malloc(sizeof(char*) * (in->map_x + 1));
 		in->map[in->map_x] = NULL;
 	}
-	get_next_line(0, &line); // skip board info
+	get_next_line(0, &line);
 	ft_strdel(&line);
 	while (i < in->map_x)
 	{
@@ -44,13 +44,12 @@ void 	get_map(t_input *in)
 		in->map[i++] = ft_strsub(line, 4, (size_t)in->map_y);
 		ft_strdel(&line);
 	}
-//	print_arr(in->map, in->map_x); // test
 }
 
-void 	get_token(t_input *in)
+void		get_token(t_input *in)
 {
-	char 	*line;
-	size_t 	i;
+	char	*line;
+	size_t	i;
 
 	i = 0;
 	line = NULL;
@@ -58,7 +57,6 @@ void 	get_token(t_input *in)
 	i = get_num(&in->token_x, line, i);
 	get_num(&in->token_y, line, i);
 	ft_strdel(&line);
-//	ft_printf("%d %d\n", in->token_x, in->token_y); // test
 	in->token = (char **)malloc(sizeof(char*) * (in->token_x + 1));
 	in->token[in->token_x] = NULL;
 	i = 0;
@@ -68,13 +66,12 @@ void 	get_token(t_input *in)
 		in->token[i++] = ft_strdup(line);
 		ft_strdel(&line);
 	}
-//	print_arr(in->token, in->token_x); // test
 }
 
-void	init_distance_map(t_input *input)
+void		init_distance_map(t_input *input)
 {
-	size_t 	i;
-	size_t 	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -85,13 +82,11 @@ void	init_distance_map(t_input *input)
 	}
 	get_rival(input);
 	init_array(input);
-//	first_calculate_distance(input);
-//	print_int_arr(input->dist_map, input->map_x, input->map_y); // test
 }
 
-void	read_input(t_input *input, char *line)
+void		read_input(t_input *input, char *line)
 {
-	size_t 	i;
+	size_t	i;
 
 	i = 0;
 	if (!input->map_x)
@@ -99,8 +94,6 @@ void	read_input(t_input *input, char *line)
 		i = get_num(&input->map_x, line, 8);
 		get_num(&input->map_y, line, i);
 	}
-//	ft_strdel(&line);
-//	ft_printf("%d %d\n", input->map_x, input->map_y); // test
 	get_map(input);
 	get_token(input);
 	if (!input->dist_map)

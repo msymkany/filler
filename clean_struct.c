@@ -12,9 +12,9 @@
 
 #include "filler.h"
 
-void	clean_struct(t_input *in)
+void		clean_struct(t_input *in)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	in->token_x = 0;
@@ -30,14 +30,14 @@ void	clean_struct(t_input *in)
 	i = 0;
 	while (in->map[i])
 	{
-		ft_strdel(&in->map[i++]); // or strdel
+		ft_strdel(&in->map[i++]);
 	}
 	in->dist_sum = 2147483647;
 }
 
 t_input		*initialize_struct(void)
 {
-	t_input 	*in;
+	t_input		*in;
 
 	in = (t_input *)malloc(sizeof(t_input));
 	in->sign = 0;
@@ -47,34 +47,19 @@ t_input		*initialize_struct(void)
 	in->token_x = 0;
 	in->token_y = 0;
 	in->token = NULL;
-	in->rival_x = 0; //in->rival_x = -2147483648; // ver.1
-	in->rival_y = 0; //in->rival_y = -2147483648; // ver.1
+	in->rival_x = 0;
+	in->rival_y = 0;
 	in->res_x = 0;
 	in->res_y = 0;
 	in->dist_sum = 2147483647;
-//	in->in = 0; //test side ver.1
 	in->dist_map = NULL;
 	return (in);
 }
 
-void	delete_struct(t_input **in)
+void		delete_struct(t_input **in)
 {
-	int 	i;
+	int		i;
 
-	i = 0;
-//	while ((*in)->token[i])
-//	{
-//		free((*in)->token[i++]);
-//	}
-//	free((*in)->token);
-//	(*in)->token = NULL;
-//	i = 0;
-//	while ((*in)->map[i])
-//	{
-//		free((*in)->map[i++]);
-//	}
-//	free((*in)->map);
-//	(*in)->map = NULL;
 	i = 0;
 	while (i < (*in)->map_x)
 	{

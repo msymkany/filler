@@ -26,7 +26,6 @@ SOURCE = filler.c \
 
 OBJECTS = $(SOURCE:.c=.o)
 
-# libraries
 LIBFT_DIR = ./libft/
 
 all: $(NAME)
